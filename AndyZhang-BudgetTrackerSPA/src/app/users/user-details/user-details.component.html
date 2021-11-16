@@ -1,0 +1,75 @@
+<div class="container">
+    <h1>{{user.fullName}}</h1>
+    <h4>{{user.email}}</h4>
+    <br>
+    <div class="container">
+        <h4>Income</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Desciption</th>
+                    <th scope="col">Income Date</th>
+                    <th scope="col">Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let income of user.incomes">
+                    <td>
+                        {{income.id}}
+                    </td>
+                    <td>
+                        {{income.amount.toLocaleString('en-US', {
+                            style: 'currency',
+                            currency: 'USD'
+                            })}}
+                    </td>
+                    <td>
+                        {{income.description}}
+                    </td>
+                    <td>
+                        {{income.incomeDate.substring(0,10)}}
+                    </td>
+                    <td>
+                        {{income.remarks}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Expenditure</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Desciption</th>
+                    <th scope="col">Expenditure Date</th>
+                    <th scope="col">Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let expenditure of user.expenditures">
+                    <td>
+                        {{expenditure.id}}
+                    </td>
+                    <td>
+                        {{expenditure.amount.toLocaleString('en-US', {
+                            style: 'currency',
+                            currency: 'USD'
+                            })}}
+                    </td>
+                    <td>
+                        {{expenditure.description}}
+                    </td>
+                    <td>
+                        {{expenditure.expDate.substring(0,10)}}
+                    </td>
+                    <td>
+                        {{expenditure.remarks}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

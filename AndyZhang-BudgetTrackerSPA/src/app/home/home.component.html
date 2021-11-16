@@ -1,0 +1,19 @@
+
+<div class="container">
+    <h2>Budget Tracker SPA</h2>
+    <br>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td><a [routerLink]="[ '/user/details/', user.id ]">{{user.fullName}}</a></td>
+            <td>{{user.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
