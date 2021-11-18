@@ -23,20 +23,26 @@ namespace Infrastructure.Services
             _incomeRepository = incomeRepository;
         }
 
-        public async Task AddUser(UserRequestModel userRequestModel)
+        public async Task<bool> AddUser(UserRequestModel userRequestModel)
         {
-            await _userRepository.Add(new User
+            var user = await _userRepository.Add(new User
             {
                 Email = userRequestModel.Email,
                 Password = userRequestModel.Password,
                 Fullname = userRequestModel.FullName,
                 JoinedOn = userRequestModel.JoinedOn
             }) ;
+
+            if (user == null)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public async Task AddExpenditure(ExpenditureRequestModel expenditureRequestModel)
+        public async Task<bool> AddExpenditure(ExpenditureRequestModel expenditureRequestModel)
         {
-            await _expenditureRepository.Add(new Expenditure
+            var exp = await _expenditureRepository.Add(new Expenditure
             {
                 UserId = expenditureRequestModel.UserId,
                 Amount = expenditureRequestModel.Amount,
@@ -44,11 +50,17 @@ namespace Infrastructure.Services
                 ExpDate = expenditureRequestModel.ExpDate,
                 Remarks = expenditureRequestModel.Remarks
             });
+
+            if (exp == null)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public async Task AddIncome(IncomeRequestModel incomeRequestModel)
+        public async Task<bool> AddIncome(IncomeRequestModel incomeRequestModel)
         {
-            await _incomeRepository.Add(new Income
+            var income = await _incomeRepository.Add(new Income
             {
                 UserId = incomeRequestModel.UserId,
                 Amount = incomeRequestModel.Amount,
@@ -56,6 +68,12 @@ namespace Infrastructure.Services
                 IncomeDate = incomeRequestModel.IncomeDate,
                 Remarks = incomeRequestModel.Remarks
             });
+
+            if (income == null)
+            {
+                return false;
+            }
+            return true;
         }
 
         public async Task DeleteUser(int userId)

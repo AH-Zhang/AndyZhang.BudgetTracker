@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { UserService } from 'src/app/services/user.service'; 
 import { User } from 'src/app/shared/models/User';
 
@@ -13,24 +13,26 @@ export class UserDetailsComponent implements OnInit {
   user!: User;
   constructor(private userService: UserService, private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    // this.route.queryParams.subscribe(params => {this.userId = params.id});
-    // console.log(this.userId)
-    // this.route.paramMap.subscribe(p => {
+  ngOnInit() {
+    this.route.queryParams
+      .subscribe(params => {
+        this.userId = params.userId;
 
-        this.userService.getUser(this.userId).subscribe(
-          m => { this.user = m;
-            console.log("hello");
+        this.userService.getUser(this.userId).subscribe(u => {
+          this.user = u;
         });
-    // });
-    this.route.paramMap.subscribe(
-      p => {
-        this.userId = Number(p.get('id'));
-        this.userService.getUser(this.userId).subscribe(
-          u => {
-            this.user = u;
-          });
       }
     );
+  }
+
+  deleteIncome(id: number){
+    this.userService.deleteIncome(id).subscribe(m => {
+      location.reload();
+    })
+  }
+  deleteExpenditure(id: number){
+    this.userService.deleteExpenditure(id).subscribe(m => {
+      location.reload();
+    })
   }
 }

@@ -3,7 +3,10 @@
     <h4>{{user.email}}</h4>
     <br>
     <div class="container">
-        <h4>Income</h4>
+        <h4>Income
+        <a [routerLink]="['/user/createIncome']" [queryParams]="{userId : userId}"> 
+            <button class="btn btn-primary"> Add Income </button>
+        </a></h4>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -34,10 +37,18 @@
                     <td>
                         {{income.remarks}}
                     </td>
+                    <td>
+                        <button class="btn btn-success" [routerLink]="['/user/updateIncome']" [queryParams]="{userId : userId, id: income.id}"> Edit</button>
+                        <button class="btn btn-danger" (click)="deleteIncome(income.id)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
-        <h4>Expenditure</h4>
+        <br>
+        <h4>Expenditure
+            <a [routerLink]="['/user/createExpenditure']" [queryParams]="{userId : userId}"> 
+                <button class="btn btn-primary"> Add Expenditure </button>
+            </a></h4>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -67,6 +78,10 @@
                     </td>
                     <td>
                         {{expenditure.remarks}}
+                    </td>
+                    <td>
+                        <button class="btn btn-success" [routerLink]="['/user/updateExpenditure']" [queryParams]="{userId : userId, id: expenditure.id}">Edit</button>
+                        <button class="btn btn-danger" (click)="deleteExpenditure(expenditure.id)">Delete</button>
                     </td>
                 </tr>
             </tbody>

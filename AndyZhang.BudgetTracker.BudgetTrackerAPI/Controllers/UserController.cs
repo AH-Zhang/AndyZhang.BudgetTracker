@@ -34,8 +34,8 @@ namespace AndyZhang.BudgetTracker.BudgetTrackerAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Details/{id:int}")]
-        public async Task<IActionResult> GetUser( int id)
+        [Route("Details")]
+        public async Task<IActionResult> GetUser([FromQuery] int id)
         {
             var user = await _userService.GetUser(id);
 
@@ -49,11 +49,16 @@ namespace AndyZhang.BudgetTracker.BudgetTrackerAPI.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public async Task<IActionResult> CreateUser([FromBody] UserRequestModel user)
+        public async Task<IActionResult> CreateUser([FromBody]UserRequestModel user)
         {
-            await _userService.AddUser(user) ;
+            var res = await _userService.AddUser(user) ;
+            if (res)
+            {
+                return Ok();
+            }
 
-            return Ok();
+
+            return BadRequest();
         }
 
         [HttpDelete]

@@ -7,3 +7,11 @@ export interface Income {
     incomeDate:  string;
     remarks:     string;
 }
+
+export interface NewIncome {
+    userId:      number;
+    amount:      number;
+    description: string;
+    incomeDate:  string;
+    remarks:     string;
+}

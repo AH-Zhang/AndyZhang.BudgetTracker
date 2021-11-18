@@ -7,3 +7,11 @@ export interface Expenditure {
     expDate:     string;
     remarks:     string;
 }
+
+export interface NewExpenditure {
+    userId:      number;
+    amount:      number;
+    description: string;
+    expDate:     string;
+    remarks:     string;
+}

@@ -19,4 +19,9 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  delete(userId: number) {
+    this.userService.deleteUser(userId).subscribe(m => {
+      location.reload();
+    })
+  }
 }
